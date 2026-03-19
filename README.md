@@ -4,9 +4,9 @@
 
 Prepayment rates are a key driver of uncertainty in the cashflows when modelling mortgages for mortgage insurance pricing or MBS pricing. This directly impacts insurance exposures, valuations, and hedging. 
 
-From my professional experience, I realised in practice, prepayment is often modelled using deterministic economic scenarios, which fail to capture:
+From my professional experience I realised in practice, prepayment is often modelled using deterministic economic scenarios, which fail to capture:
 - sensitivity to interest rates  
-- heterogeneity in borrowers' behaviour and prepayment incentive  
+- heterogeneity in borrower's behaviour and prepayment incentive  
 - uncertainty around the point-estimate prepayment rate  
 
 This project attempts to explore a stochastic simulation framework to understand how interest rate paths and prepayment incentives jointly influence the prepayment rates at a mortgage portfolio level.
@@ -24,7 +24,7 @@ Use stochastic interest rate paths and a simplified version of actual borrower b
 - A Synthetic mortgage pool is developed with loan-level characteristics like:
   - Original Loan balance  
   - Original Interest rate of the loan at its origination  
-  - Credit score, like FICO  
+  - Credit score like FICO  
   - Original Loan-to-Value Ratio (LTV) of the loan
 - Modelling parameters for interest rate paths and prepayment sensitivity  
 
@@ -33,14 +33,14 @@ Use stochastic interest rate paths and a simplified version of actual borrower b
 ## 4. Modelling Approach
 
 ### Interest Rate Modelling
-- Interest rate paths are simulated using stochastic interest rate models like Vasicek and Cox-Ingersoll-Ross (CIR)
+- Interest rates paths are simulated using stochastic interest rate models like Vasicek and Cox-Ingersoll-Ross (CIR)
 - Selection of the CIR model as the primary model for modelling interest rate paths since it does not produce negative interest rates, making prepayment incentives economical to model  
 - Continuous stochastic interest rate models are discretised using the Maruyama scheme  
 
 ---
 
 ### Prepayment Model
-- Prepayment likelihood is modelled using a logistic function of the spread between the original interest rate of the loan and prevailing market rate simulated from a stochastic interest rate path.
+- Prepayment likelihood is modelled using a logistic function of spread between the original interest rate of the loan and prevailing market rate simulated from stochastic interest rate path.
 - Prepayment probability is then adjusted using borrower characteristics like:
   - Higher FICO and Lower LTV leading to a higher prepayment incentive  
   - Lower FICO and higher LTV leading to a lower prepayment incentive  
@@ -60,14 +60,14 @@ Use stochastic interest rate paths and a simplified version of actual borrower b
 ## 5. Key Insights
 
 - Interest rate paths are primary drivers of prepayment uncertainty, with falling rate scenarios producing higher CPR dispersion
-- Borrower characteristics like FICO and LTV introduce non-linear effects in low-rate environments
-- Even under similar initial conditions, stochastic paths produce a wide range of pool balances, which highlights the limitations of deterministic scenarios
+- Borrower characteristics like FICO and LTV introduces non-linear effects in low-rate environments
+- Even under similar initial conditions, stochastic paths produce a wide range of pool balances which higlights the limitations of deterministic scenarios
 
 ---
 
 ## 6. Limitations
 
-- The prepayment model is simplified and fails to incorporate:
+- Prepayment model is simplified and fails to incorporate:
   - seasonality effects  
   - burnout behaviour  
   - macroeconomic factors like unemployment and housing turnover 
@@ -86,4 +86,14 @@ Use stochastic interest rate paths and a simplified version of actual borrower b
 
 ## 9. Takeaway
 
-Working on this project has helped me understand the sensitivity of mortgage portfolios to interest rates and loan characteristics, particularly around prepayment behaviour. This motivated the need for a robust and stochastic modelling framework to model prepayment uncertainties.  
+Working on ths project has helped me understand the sensitivity of mortgage portfolios to interest rates and loan characteristics, particularly around prepayment behaviour. This motivated the need for a robust and stochastic modelling framework to model prepayment uncertainties.  
+
+---
+
+## Libraries
+
+`numpy` `pandas` `matplotlib` 
+
+## How to Run
+
+Run the notebooks in order: `01` → `02` → `03`. Notebook 03 imports functions from notebooks 01 and 02 using `import_ipynb`.
