@@ -43,7 +43,7 @@ Use stochastic interest rate paths and a simplified version of actual borrower b
 
 ### Calibrating Interest Rate Models
 - OLS techniques used to calibrate a CIR and Vasicek model. Final calibrated model includes fixed $\theta$ parameter and other parameters being estimated using OLS
-- Linear Regression fit to convert short-term interest rates into mortgage rates
+- Mortgage rates were derived from the simulated rate paths using a simplified relationship that reflects how longer-term rates move more smoothly than short-term rates, along with a constant spread.
 - Limitations of observed rates not following a mean-reverting process leads us to chose a calibration model that fixes $\theta$ parameter
 
 ---
