@@ -8,6 +8,7 @@ From my professional experience I realised, in practice, prepayment is often mod
 - sensitivity to interest rates  
 - heterogeneity in borrower's behaviour and prepayment incentive  
 - uncertainty around the point-estimate prepayment rate  
+- non-linear dependence on interest rate incentives
 
 This project attempts to explore a stochastic simulation framework to understand how interest rate paths and prepayment incentives jointly influence the prepayment rates at a mortgage portfolio level.
 
@@ -15,7 +16,10 @@ This project attempts to explore a stochastic simulation framework to understand
 
 ## 2. Objective
 
-Use stochastic interest rate paths and a simplified version of actual borrower behaviour to simulate the evolution of a mortgage pool over a 10-year horizon. Additionally, using these simulated paths to estimate the distribution of unpaid principal balance (UPB) and prepayment rates (CPR).
+To quantify how stochastic interest rate dynamics and borrower-level behavioural assumptions influence:
+- Distribution of prepayment rates
+- Evolution of Unpaid Principal Balance
+- Dispersion of mortgage portfolio cashflows
 
 ---
 
@@ -43,7 +47,7 @@ Use stochastic interest rate paths and a simplified version of actual borrower b
 
 ### Calibrating Interest Rate Models
 - OLS techniques used to calibrate a CIR and Vasicek model. Final calibrated model includes fixed $\theta$ parameter and other parameters being estimated using OLS
-- Mortgage rates were derived from the simulated rate paths using a simplified relationship that reflects how longer-term rates move more smoothly than short-term rates, along with a constant spread.
+- Linear Regression fit to convert short-term interest rates into mortgage rates
 - Limitations of observed rates not following a mean-reverting process leads us to chose a calibration model that fixes $\theta$ parameter
 
 ---
@@ -71,6 +75,9 @@ Use stochastic interest rate paths and a simplified version of actual borrower b
 - Interest rate paths are primary drivers of prepayment uncertainty, with falling rate scenarios producing higher CPR dispersion
 - Borrower characteristics like FICO and LTV introduces non-linear effects in low-rate environments
 - Even under similar initial conditions, stochastic paths produce a wide range of pool balances which higlights the limitations of deterministic scenarios
+- The results illustrate a fundamental feature of mortgage portfolios:
+  - Negative convexity — as rates fall, prepayments accelerate, limiting upside; as rates rise, prepayments slow, extending duration.
+- From a valuation perspective, ignoring stochastic rate dynamics can lead to systematic mispricing of MBS cashflows. 
 
 ---
 
